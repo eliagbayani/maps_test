@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+        #dvMap {
+          height: 100%;
+        }
+        body
+        {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+    </style>
+</head>
+<body>
+<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
+<script async defer            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXt2WPrcQniaMomonEruEOi3EHYlGEi3U&signed_in=true"></script>
+
+<!-- 
+ROADMAP (normal, default 2D map)
+SATELLITE (photographic map)
+HYBRID (photographic map + roads and city names)
+TERRAIN (map with mountains, rivers, etc.)
+-->
+
+<script type="text/javascript">
+    var markers = [
+        ['Aksa Beach', '19.1759668', '72.79504659999998', 'Aksa Beach is a popular beach and a vacation spot in Aksa village at Malad, Mumbai.', 3],
+        ['Juhu Beach', '19.0883595', '72.82652380000002', 'Juhu Beach is one of favourite tourist attractions situated in Mumbai.', 2],
+        ['Girgaum Beach', '18.9542149', '72.81203529999993', 'Girgaum Beach commonly known as just Chaupati is one of the most famous public beaches in Mumbai.', 1],
+        ['Jijamata Udyan', '18.979006', '72.83388300000001', 'Jijamata Udyan is situated near Byculla station is famous as Mumbai (Bombay) Zoo.', 4],
+        ['Sanjay Gandhi National Park', '19.2147067', '72.91062020000004', 'Sanjay Gandhi National Park is a large protected area in the northern part of Mumbai city.', 5]
+    ];
+    
+    window.onload = function () {
+        LoadMap();
+    }
+    function LoadMap() {
+        var mapOptions = {
+            center: new google.maps.LatLng(markers[0][1], markers[0][2]),
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.TERRAIN
+        };
+        var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+
+        //Create and open InfoWindow.
+        var infoWindow = new google.maps.InfoWindow();
+
+        var markerx = [];
+        
+        for (var i = 0; i < markers.length; i++) {
+            var data = markers[i];
+            var myLatlng = new google.maps.LatLng(data[1], data[2]);
+            
+            var circle ={
+                path: google.maps.SymbolPath.CIRCLE,
+                fillColor: 'red',
+                fillOpacity: .4,
+                scale: 4.5,
+                strokeColor: 'white',
+                strokeWeight: 1
+            };
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: data[0],
+                // icon: {
+                //       path: google.maps.SymbolPath.CIRCLE,
+                //       fillColor: 'red',
+                //       fillOpacity: 0.8,
+                //       scale: 1,
+                //       strokeColor: 'red',
+                //       strokeWeight: 14
+                //     }
+              
+                // icon: "https://storage.googleapis.com/support-kms-prod/SNP_2752125_en_v0",
+              
+                icon: circle,
+                zIndex: data[4]
+                
+            });
+            
+            markerx.push(marker);
+            
+
+            //Attach click event to the marker.
+            // (function (marker, data) {
+            //     google.maps.event.addListener(marker, "click", function (e) {
+            //         //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+            //         // infoWindow.setContent("<div style = 'width:200px;min-height:40px'>" + data[3] + "</div>");
+            //         infoWindow.setContent(data[3]);
+            //         infoWindow.open(map, marker);
+            //     });
+            // })(marker, data);
+        }
+
+        //start Marker Cluster
+        // var markerx = [];
+        // for (var i = 0; i < 100; i++) {
+        //   var latLng = new google.maps.LatLng(data.photos[i].latitude,
+        //       data.photos[i].longitude);
+        //   var marker = new google.maps.Marker({'position': latLng});
+        //   markerx.push(marker);
+        // }
+        var markerCluster = new MarkerClusterer(map, markerx);
+        
+    }
+    
+    /*
+    function AutoCenter() {
+    //  Create a new viewpoint bound
+    var bounds = new google.maps.LatLngBounds();
+    //  Go through each...
+    $.each(markers, function (index, marker) {
+    bounds.extend(marker.position);
+    });
+    //  Fit these bounds to the map
+    map.fitBounds(bounds);
+    }
+    */
+</script>
+<div id="dvMap" style="width: 50%; height: 50%">
+<!-- <div id="dvMap"></div> -->
+</body>
+</html>
