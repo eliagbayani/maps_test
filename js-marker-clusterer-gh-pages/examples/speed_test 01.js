@@ -19,8 +19,7 @@ speedTest.infoWindow = null;
 
 var markerSpiderfier = null;
 
-var statuz = [];        //for back button
-var statuz_all = [];    //for next button
+var statuz = []; //for back button
 
 
 speedTest.init = function() {
@@ -50,10 +49,8 @@ speedTest.init = function() {
   var useGmm = document.getElementById('usegmm');
   google.maps.event.addDomListener(useGmm, 'click', speedTest.change);
   
-  /* for <select> no. of markers
   var numMarkers = document.getElementById('nummarkers');
   google.maps.event.addDomListener(numMarkers, 'change', speedTest.change);
-  */
   
   speedTest.infoWindow = new google.maps.InfoWindow();
   
@@ -70,20 +67,14 @@ function record_history()
     current.zoom = speedTest.map.getZoom();
     current.mapTypeId = speedTest.map.getMapTypeId();
     statuz.push(current);
-    statuz_all.push(current);
-    
 }
 speedTest.back = function()
 {
-    if(statuz.length > 1) {
+    if(statuz.length > 1)
+    {
         statuz.pop(); 
         speedTest.map.setOptions(statuz.pop());
     }
-}
-speedTest.next = function()
-{
-    // alert(statuz.length);
-    speedTest.map.setOptions(statuz_all[(statuz.length)]);
 }
 //end back button
 
@@ -101,9 +92,7 @@ speedTest.showMarkers = function() {
 
   var panel = $('markerlist');
   panel.innerHTML = '';
-  
-  // var numMarkers = $('nummarkers').value; //for <select> no. of markers
-  
+  var numMarkers = $('nummarkers').value;
   var numMarkers = speedTest.pics.length;
   $('total_markers').innerHTML = numMarkers;
 

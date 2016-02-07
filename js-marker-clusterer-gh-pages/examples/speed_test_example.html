@@ -118,14 +118,16 @@
 
 <body>
     <div id="panel">
-        <h3>MarkerClusterer v3</h3>
         <p><a href="?compiled">Compiled</a> | <a href="?">Standard</a> version of the script.</p>
         <div>
             <input type="checkbox" checked="checked" id="usegmm"/>
             <span>Use MarkerClusterer</span>
-            <button onclick="speedTest.back();">Back</button> 
+            <span>Time used: <span id="timetaken"></span> ms</span>
+            <button onclick="speedTest.back();">Back</button>
+            <button onclick="speedTest.next();">Next</button>
+            
         </div>
-
+        <!--
         <div>
             Markers:
             <select id="nummarkers">
@@ -135,9 +137,9 @@
             <option value="500">500</option>
             <option value="1000" selected="selected">1000</option>
             </select>
-            <span>Time used: <span id="timetaken"></span> ms</span>
         </div>
-
+        -->
+        
         <strong>Marker List</strong> [n=<span id="total_markers"></span>]
         <div id="markerlist"></div>
     </div>
