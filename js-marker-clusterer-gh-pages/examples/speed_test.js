@@ -23,10 +23,30 @@ var statuz = [];        //for back button
 var statuz_all = [];    //for next button
 
 
+
+function get_center_lat_long()
+{
+    var bound = new google.maps.LatLngBounds();
+    speedTest.pics = data.photos;
+    var numMarkers = speedTest.pics.length;
+    for (var i = 0; i < numMarkers; i++) 
+    {
+      bound.extend( new google.maps.LatLng(speedTest.pics[i].latitude, speedTest.pics[i].longitude) );
+    }
+    // console.log( bound.getCenter() );
+    return bound.getCenter();
+}
+
 speedTest.init = function() {
-  var latlng = new google.maps.LatLng(39.91, 116.38);
+  // var latlng = new google.maps.LatLng(39.91, 116.38);
+  
+  //start centering map
+  center_latlong = get_center_lat_long()
+  var latlng = new google.maps.LatLng(center_latlong["G"], center_latlong["K"]);
+  //end centering map
+  
   var options = {
-    'zoom': 2,
+    'zoom': 3,      //2 has overlapping continents
     'center': latlng,
     'mapTypeId': google.maps.MapTypeId.ROADMAP,
     'scaleControl': true
@@ -78,15 +98,20 @@ speedTest.back = function()
     if(statuz.length > 1) {
         statuz.pop();
         speedTest.map.setOptions(statuz.pop());
-        statuz_all.pop();
-        
+        // statuz_all.pop();
     }
 }
 speedTest.next = function()
 {
-    alert(statuz.length);
-    alert(statuz_all.length);
-    speedTest.map.setOptions(statuz_all[(statuz.length)]);
+    // alert(statuz.length);
+    // alert(statuz_all.length);
+    
+    // speedTest.map.setOptions(statuz_all[(statuz.length)]);
+
+    statuz_all.pop();
+    
+    speedTest.map.setOptions(statuz_all.pop());
+    
     // statuz_all.pop();
     // statuz_all.pop();
 }
@@ -128,8 +153,7 @@ speedTest.showMarkers = function() {
     panel.appendChild(item);
 
 
-    var latLng = new google.maps.LatLng(speedTest.pics[i].latitude,
-        speedTest.pics[i].longitude);
+    var latLng = new google.maps.LatLng(speedTest.pics[i].latitude, speedTest.pics[i].longitude);
 
     var imageUrl = 'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=' +
         'FFFFFF,008CFF,000000&ext=.png';
@@ -157,8 +181,7 @@ speedTest.showMarkers = function() {
   
   // /*
   //start spiderfy
-  // var iw = new gm.InfoWindow();
-  var iw = new google.maps.InfoWindow();
+  // var iw = new google.maps.InfoWindow();
 
   markerSpiderfier.addListener('click', function(marker, e) {
       // iw.setContent(marker.title);
