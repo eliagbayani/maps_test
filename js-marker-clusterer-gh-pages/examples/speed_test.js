@@ -46,7 +46,7 @@ speedTest.init = function() {
   //end centering map
   
   var options = {
-    'zoom': 3,      //2 has overlapping continents
+    'zoom': 2,      //2 has overlapping continents
     'center': latlng,
     'mapTypeId': google.maps.MapTypeId.ROADMAP,
     'scaleControl': true
@@ -98,22 +98,12 @@ speedTest.back = function()
     if(statuz.length > 1) {
         statuz.pop();
         speedTest.map.setOptions(statuz.pop());
-        // statuz_all.pop();
     }
 }
 speedTest.next = function()
 {
-    // alert(statuz.length);
-    // alert(statuz_all.length);
-    
-    // speedTest.map.setOptions(statuz_all[(statuz.length)]);
-
     statuz_all.pop();
-    
     speedTest.map.setOptions(statuz_all.pop());
-    
-    // statuz_all.pop();
-    // statuz_all.pop();
 }
 //end back button
 
@@ -152,14 +142,9 @@ speedTest.showMarkers = function() {
     item.appendChild(title);
     panel.appendChild(item);
 
-
     var latLng = new google.maps.LatLng(speedTest.pics[i].latitude, speedTest.pics[i].longitude);
-
-    var imageUrl = 'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=' +
-        'FFFFFF,008CFF,000000&ext=.png';
-    var markerImage = new google.maps.MarkerImage(imageUrl,
-        new google.maps.Size(24, 32));
-
+    var imageUrl = 'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=' + 'FFFFFF,008CFF,000000&ext=.png';
+    var markerImage = new google.maps.MarkerImage(imageUrl, new google.maps.Size(24, 32));
     var marker = new google.maps.Marker({
       'position': latLng,
       // 'icon': markerImage
@@ -181,17 +166,11 @@ speedTest.showMarkers = function() {
   
   // /*
   //start spiderfy
-  // var iw = new google.maps.InfoWindow();
-
   markerSpiderfier.addListener('click', function(marker, e) {
-      // iw.setContent(marker.title);
-      // speedTest.infoWindow.setContent("marker title elix");
       speedTest.infoWindow.open(speedTest.map, marker);
   });
-
   markerx = speedTest.markers;
   markerSpiderfier.addListener('spiderfy', function(markerx) {speedTest.infoWindow.close();});
-  
   //end spiderfy
   // */
   
