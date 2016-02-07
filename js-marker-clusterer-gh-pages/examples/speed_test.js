@@ -19,12 +19,16 @@ speedTest.infoWindow = null;
 
 var markerSpiderfier = null;
 
+var statuz = []; //for back button
+
+
 speedTest.init = function() {
   var latlng = new google.maps.LatLng(39.91, 116.38);
   var options = {
     'zoom': 2,
     'center': latlng,
-    'mapTypeId': google.maps.MapTypeId.ROADMAP
+    'mapTypeId': google.maps.MapTypeId.ROADMAP,
+    'scaleControl': true
   };
 
   speedTest.map = new google.maps.Map($('map'), options);
@@ -52,7 +56,27 @@ speedTest.init = function() {
   
   speedTest.showMarkers();
   
+  google.maps.event.addListener(speedTest.map, 'idle', function(){record_history();}); //for back-button    //other option for event 'tilesloaded'
 };
+
+//start back button
+function record_history()
+{
+    var current = {};
+    current.center = speedTest.map.getCenter();
+    current.zoom = speedTest.map.getZoom();
+    current.mapTypeId = speedTest.map.getMapTypeId();
+    statuz.push(current);
+}
+speedTest.back = function()
+{
+    if(statuz.length > 1)
+    {
+        statuz.pop(); 
+        speedTest.map.setOptions(statuz.pop());
+    }
+}
+//end back button
 
 speedTest.showMarkers = function() {
   speedTest.markers = [];

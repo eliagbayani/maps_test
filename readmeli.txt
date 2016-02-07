@@ -33,6 +33,24 @@ Marker Clusterer Plus & Overlapping Marker Spiderfier
 https://github.com/yagoferrer/markerclusterer-plus-spiderfier-example
 
 ----------------------------------------
+
+https://github.com/jawj/OverlappingMarkerSpiderfier
+
+----------------------------------------
+
+http://stackoverflow.com/questions/20490654/more-than-one-marker-on-same-place-markerclusterer
+sol'n here is to add a random no. to lat or long to differentiate similar lat-longs
+----------------------------------------
+
+http://stackoverflow.com/questions/9726920/integrating-spiderfier-js-into-markerclusterer-v3-to-explode-multi-markers-with
+
+----------------------------------------
+back button
+https://groups.google.com/forum/#!topic/google-maps-js-api-v3/L6NnpItTND0
+
 ----------------------------------------
 ----------------------------------------
 ----------------------------------------
+----------------------------------------
+----------------------------------------
+

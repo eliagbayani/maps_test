@@ -9,12 +9,13 @@
         margin: 0;
         padding: 0;
         font-family: Arial;
-        font-size: 14px;
+        font-size: 10px;
       }
       #panel {
         float: left;
         width: 300px;
-        height: 550px;
+        /*height: 550px;*/
+        height: 100%;
       }
       #map-container {
         margin-left: 300px;
@@ -115,33 +116,31 @@
     -->
   </head>
 
-  <body>
+<body>
     <div id="panel">
-      <h3>An example of MarkerClusterer v3</h3>
-      <p><a href="?compiled">Compiled</a> | <a href="?">Standard</a> version of the script.</p>
+        <h3>MarkerClusterer v3</h3>
+        <p><a href="?compiled">Compiled</a> | <a href="?">Standard</a> version of the script.</p>
+        <div>
+            <input type="checkbox" checked="checked" id="usegmm"/>
+            <span>Use MarkerClusterer</span>
+            <button onclick="speedTest.back();">Back</button> 
+        </div>
 
-      <div>
-        <input type="checkbox" checked="checked" id="usegmm"/>
-        <span>Use MarkerClusterer</span>
-      </div>
+        <div>
+            Markers:
+            <select id="nummarkers">
+            <option value="10">10</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="500">500</option>
+            <option value="1000" selected="selected">1000</option>
+            </select>
+            <span>Time used: <span id="timetaken"></span> ms</span>
+        </div>
 
-      <div>
-        Markers:
-        <select id="nummarkers">
-          <option value="10">10</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-          <option value="500">500</option>
-          <option value="1000" selected="selected">1000</option>
-        </select>
-        <span>Time used: <span id="timetaken"></span> ms</span>
-      </div>
-
-      <strong>Marker List</strong> [n=<span id="total_markers"></span>]
-      <div id="markerlist"></div>
+        <strong>Marker List</strong> [n=<span id="total_markers"></span>]
+        <div id="markerlist"></div>
     </div>
-    
     <div id="map-container"><div id="map"></div></div>
-  
   </body>
 </html>
