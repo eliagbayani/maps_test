@@ -76,14 +76,19 @@ function record_history()
 speedTest.back = function()
 {
     if(statuz.length > 1) {
-        statuz.pop(); 
+        statuz.pop();
         speedTest.map.setOptions(statuz.pop());
+        statuz_all.pop();
+        
     }
 }
 speedTest.next = function()
 {
-    // alert(statuz.length);
+    alert(statuz.length);
+    alert(statuz_all.length);
     speedTest.map.setOptions(statuz_all[(statuz.length)]);
+    // statuz_all.pop();
+    // statuz_all.pop();
 }
 //end back button
 
