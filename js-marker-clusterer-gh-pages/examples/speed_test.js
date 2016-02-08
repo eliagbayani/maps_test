@@ -63,7 +63,10 @@ function CenterControl(controlDiv, map) {
     // Set up the click event listener
     goBackUI.addEventListener('click', function() {speedTest.back();});
     goNextUI.addEventListener('click', function() {speedTest.next();});
-    goOrigUI.addEventListener('click', function() {speedTest.map.setOptions(initial_map);});
+    goOrigUI.addEventListener('click', function() {speedTest.map.setOptions(initial_map);
+        statuz = [];
+        statuz_all = [];
+        });
   
 }
 
@@ -150,14 +153,24 @@ speedTest.back = function()
 {
     if(statuz.length > 1) {
         statuz.pop();
-        speedTest.map.setOptions(statuz.pop());
+        var current = statuz.pop();
+        speedTest.map.setOptions(current);
+        if(JSON.stringify(current) == JSON.stringify(initial_map)){
+            statuz = [];
+            statuz_all = [];
+        }
     }
 }
 speedTest.next = function()
 {
     if(statuz_all.length > 1) {
         statuz_all.pop();
-        speedTest.map.setOptions(statuz_all.pop());
+        var current = statuz_all.pop();
+        speedTest.map.setOptions(current);
+        if(JSON.stringify(current) == JSON.stringify(initial_map)){
+            statuz = [];
+            statuz_all = [];
+        }
     }
 }
 //end back button
