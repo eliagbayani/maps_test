@@ -87,7 +87,6 @@ speedTest.init = function() {
   speedTest.pics = data.photos;
   speedTest.map.enableKeyDragZoom();  //for key-drag-zoom
   
-  // /*
   //start spiderfy
   var spiderConfig = {
           keepSpiderfied: true,
@@ -96,7 +95,6 @@ speedTest.init = function() {
       
   markerSpiderfier = new OverlappingMarkerSpiderfier(speedTest.map, spiderConfig);
   //end spiderfy
-  // */
   
   var useGmm = document.getElementById('usegmm');
   google.maps.event.addDomListener(useGmm, 'click', speedTest.change);
@@ -142,8 +140,10 @@ speedTest.back = function()
 }
 speedTest.next = function()
 {
-    statuz_all.pop();
-    speedTest.map.setOptions(statuz_all.pop());
+    if(statuz_all.length > 1) {
+        statuz_all.pop();
+        speedTest.map.setOptions(statuz_all.pop());
+    }
 }
 //end back button
 
