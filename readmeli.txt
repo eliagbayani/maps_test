@@ -49,6 +49,12 @@ back button
 https://groups.google.com/forum/#!topic/google-maps-js-api-v3/L6NnpItTND0
 
 ----------------------------------------
+used code for centering map
+http://stackoverflow.com/questions/10634199/find-center-of-multiple-locations-in-google-maps
+
+another option is to use fitbounds: didn't use this
+http://stackoverflow.com/questions/1556921/google-map-api-v3-set-bounds-and-center
+
 ----------------------------------------
 ----------------------------------------
 ----------------------------------------

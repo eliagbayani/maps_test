@@ -83,10 +83,9 @@
     
     <script src="data.json"></script>
     
-    
     <script src="../../eli_js/bin/oms.min.js"></script>                                 <!-- for spiderfy -->
     
-    
+    <!-- working, use to toggle from compiled to standard
     <script>
       var script = '<script type="text/javascript" src="../src/markerclusterer';
       if (document.location.search.indexOf('compiled') !== -1) {
@@ -95,6 +94,9 @@
       script += '.js"><' + '/script>';
       document.write(script);
     </script>
+    -->
+    <script src="../src/markerclusterer_compiled.js" type="text/javascript"></script> <!-- for markerclusterer -->
+    
     <script src="speed_test.js"></script>
 
     <script>
@@ -118,7 +120,6 @@
 
 <body>
     <div id="panel">
-        <p><a href="?compiled">Compiled</a> | <a href="?">Standard</a> version of the script.</p>
         <div>
             <input type="checkbox" checked="checked" id="usegmm"/>
             <span>Use MarkerClusterer</span>
