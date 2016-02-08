@@ -22,6 +22,8 @@ var markerSpiderfier = null;
 var statuz = [];        //for back button
 var statuz_all = [];    //for next button
 
+var initial_map = false;
+
 
 //start customized controls
 function CenterControl(controlDiv, map) {
@@ -30,7 +32,7 @@ function CenterControl(controlDiv, map) {
     goBackUI.id = 'goBackUI';                       //.id here is used in HTML <style>
     goBackUI.title = 'Go back one step';
     controlDiv.appendChild(goBackUI);
-    // Set CSS for text
+    // CSS for text
     var goBackText = document.createElement('div');
     goBackText.id = 'goBackText';
     goBackText.innerHTML = 'Go Back';
@@ -41,15 +43,27 @@ function CenterControl(controlDiv, map) {
     goNextUI.id = "goNextUI";
     goNextUI.title = 'Move forward one step';
     controlDiv.appendChild(goNextUI);
-    // Set CSS for text
+    // CSS for text
     var goNextText = document.createElement('div');
     goNextText.id = 'goNextText';
     goNextText.innerHTML = 'Move Next';
     goNextUI.appendChild(goNextText);
 
+    // Set CSS for GO ORIGINAL POS
+    var goOrigUI = document.createElement('div');
+    goOrigUI.id = "goOrigUI";
+    goOrigUI.title = 'Back to original map';
+    controlDiv.appendChild(goOrigUI);
+    // CSS for text
+    var goOrigText = document.createElement('div');
+    goOrigText.id = 'goOrigText';
+    goOrigText.innerHTML = 'Initial Map';
+    goOrigUI.appendChild(goOrigText);
+
     // Set up the click event listener
     goBackUI.addEventListener('click', function() {speedTest.back();});
     goNextUI.addEventListener('click', function() {speedTest.next();});
+    goOrigUI.addEventListener('click', function() {speedTest.map.setOptions(initial_map);});
   
 }
 
@@ -130,6 +144,7 @@ function record_history()
     statuz.push(current);
     statuz_all.push(current);
     
+    if(!initial_map) initial_map = current;
 }
 speedTest.back = function()
 {
