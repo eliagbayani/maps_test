@@ -23,6 +23,37 @@ var statuz = [];        //for back button
 var statuz_all = [];    //for next button
 
 
+//start customized controls
+function CenterControl(controlDiv, map) {
+    // Set CSS for GO BACK
+    var goBackUI = document.createElement('div');
+    goBackUI.id = 'goBackUI';                       //.id here is used in HTML <style>
+    goBackUI.title = 'Go back one step';
+    controlDiv.appendChild(goBackUI);
+    // Set CSS for text
+    var goBackText = document.createElement('div');
+    goBackText.id = 'goBackText';
+    goBackText.innerHTML = 'Go Back';
+    goBackUI.appendChild(goBackText);
+
+    // Set CSS for GO NEXT
+    var goNextUI = document.createElement('div');
+    goNextUI.id = "goNextUI";
+    goNextUI.title = 'Move forward one step';
+    controlDiv.appendChild(goNextUI);
+    // Set CSS for text
+    var goNextText = document.createElement('div');
+    goNextText.id = 'goNextText';
+    goNextText.innerHTML = 'Move Next';
+    goNextUI.appendChild(goNextText);
+
+    // Set up the click event listener
+    goBackUI.addEventListener('click', function() {speedTest.back();});
+    goNextUI.addEventListener('click', function() {speedTest.next();});
+  
+}
+
+//end customized controls
 
 function get_center_lat_long()
 {
@@ -80,6 +111,15 @@ speedTest.init = function() {
   speedTest.showMarkers();
   
   google.maps.event.addListener(speedTest.map, 'idle', function(){record_history();}); //for back-button    //other option for event 'tilesloaded'
+  
+  //start customized controls
+    var centerControlDiv = document.createElement('div');
+    var centerControl = new CenterControl(centerControlDiv, speedTest.map);
+    centerControlDiv.index = 1;
+    centerControlDiv.style['padding-top'] = '10px';
+    speedTest.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+  //end customized controls
+  
 };
 
 //start back button
