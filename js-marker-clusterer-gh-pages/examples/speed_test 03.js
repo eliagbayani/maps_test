@@ -69,6 +69,7 @@ function CenterControl(controlDiv, map) {
     // CSS for text
     var goRadioText = document.createElement('div');
     goRadioText.id = 'goRadioText';
+    // goRadioText.innerHTML = '<input type="checkbox" checked="checked" id="usegmm2"/> Use Clusters';
     goRadioText.innerHTML = 'Clusters ON';
     goRadioUI.appendChild(goRadioText);
 
@@ -82,6 +83,19 @@ function CenterControl(controlDiv, map) {
         });
 
     goRadioUI.addEventListener('click', function() {clustersOnOff();});
+  
+  
+        // // Create the legend and display on the map
+        // var legend = document.createElement('div');
+        // legend.id = 'legend';
+        // var content = [];
+        // content.push('<input type="checkbox" checked="checked" id="usegmm"/> Use Clusters');
+        // content.push('<p>*Data is fictional</p>');
+        // legend.innerHTML = content.join('');
+        // legend.index = 2;
+        // speedTest.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+  
+  
 }
 //end customized controls
 
