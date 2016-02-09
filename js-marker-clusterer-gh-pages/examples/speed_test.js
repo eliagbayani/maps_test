@@ -60,7 +60,6 @@ function CenterControl(controlDiv, map) {
     goOrigText.innerHTML = 'Initial Map';
     goOrigUI.appendChild(goOrigText);
 
-
     // Set CSS for Radio
     var goRadioUI = document.createElement('div');
     goRadioUI.id = "goRadioUI";
@@ -130,7 +129,6 @@ speedTest.init = function() {
     speedTest.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
   //end customized controls
 
-
   speedTest.pics = data.photos;
   speedTest.map.enableKeyDragZoom();  //for key-drag-zoom
   
@@ -143,32 +141,9 @@ speedTest.init = function() {
   markerSpiderfier = new OverlappingMarkerSpiderfier(speedTest.map, spiderConfig);
   //end spiderfy
   
-  /* working if to use Radio from HTML
-  var useGmm = document.getElementById('usegmm');
-  google.maps.event.addDomListener(useGmm, 'click', speedTest.change);
-  */
-  
-  /* for <select> no. of markers
-  var numMarkers = document.getElementById('nummarkers');
-  google.maps.event.addDomListener(numMarkers, 'change', speedTest.change);
-  */
-  
   speedTest.infoWindow = new google.maps.InfoWindow();
-  
   speedTest.showMarkers();
-  
   google.maps.event.addListener(speedTest.map, 'idle', function(){record_history();}); //for back-button    //other option for event 'tilesloaded'
-  
-  // //start customized controls
-  //   var centerControlDiv = document.createElement('div');
-  //   var centerControl = new CenterControl(centerControlDiv, speedTest.map);
-  //   centerControlDiv.index = 1;
-  //   centerControlDiv.style['padding-top'] = '10px';
-  //   speedTest.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
-  // //end customized controls
-  
-  
-  
   
 };
 
@@ -213,21 +188,12 @@ speedTest.next = function()
 speedTest.showMarkers = function() {
   speedTest.markers = [];
 
-  /* surprisingly not used
-  var type = 1;
-  if ($('usegmm').checked) {
-    type = 0;
-  }
-  */
-
   if (speedTest.markerClusterer) {
     speedTest.markerClusterer.clearMarkers();
   }
 
   var panel = $('markerlist');
   panel.innerHTML = '';
-  
-  // var numMarkers = $('nummarkers').value; //for <select> no. of markers
   
   var numMarkers = speedTest.pics.length;
   $('total_markers').innerHTML = numMarkers;
@@ -326,20 +292,7 @@ speedTest.time = function() {
   $('timetaken').innerHTML = 'timing...';
   var start = new Date();
 
-  /* working if to use Radio from HTML
-  if ($('usegmm').checked) {
-    speedTest.markerClusterer = new MarkerClusterer(speedTest.map, speedTest.markers);
-  } else {
-    for (var i = 0, marker; marker = speedTest.markers[i]; i++) {
-      marker.setMap(speedTest.map);
-    }
-  }
-  */
-  
-  if (!document.getElementById("goRadioText")) 
-  {
-      speedTest.markerClusterer = new MarkerClusterer(speedTest.map, speedTest.markers);
-  }
+  if (!document.getElementById("goRadioText")) {speedTest.markerClusterer = new MarkerClusterer(speedTest.map, speedTest.markers);}
   else
   {
       if ($('goRadioText').innerHTML == "Clusters ON") {
@@ -350,9 +303,6 @@ speedTest.time = function() {
         }
       }
   }
-
-  
-
 
   var end = new Date();
   $('timetaken').innerHTML = end - start;
