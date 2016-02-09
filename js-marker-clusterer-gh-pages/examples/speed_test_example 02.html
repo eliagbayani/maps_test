@@ -2,27 +2,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8">
-    <title>EoL Sample Point Map</title>
+    <title>MarkerClusterer v3 Speed Test Example</title>
+
     <style>
       body {
         margin: 0;
         padding: 0;
         font-family: Arial;
-        font-size: 12px;
+        font-size: 10px;
       }
       #panel {
         float: left;
-        height: 95%;
-        width: 17%;
-      }
-      #map-container {
-/*        margin-left: 300px;*/
+        width: 300px;
+        /*height: 550px;*/
         height: 100%;
       }
+      #map-container {
+        margin-left: 300px;
+      }
       #map {
+        width: 100%;
+/*        height: 550px;*/
         height: 100%;
       }
       #markerlist {
+/*        height: 400px;*/
         height: 100%;
         margin: 10px 5px 0 10px;
         overflow: auto;
@@ -152,14 +156,29 @@
     <div id="panel">
         <div>
             <input type="checkbox" checked="checked" id="usegmm"/>
-            <span>Cluster</span>
+            <span>Use MarkerClusterer</span>
             <span>Time used: <span id="timetaken"></span> ms</span>
-            [n=<span id="total_markers"></span>]
+            <!--
+            <button onclick="speedTest.back();">Back</button>
+            <button onclick="speedTest.next();">Next</button>
+            -->
         </div>
+        <!--
+        <div>
+            Markers:
+            <select id="nummarkers">
+            <option value="10">10</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="500">500</option>
+            <option value="1000" selected="selected">1000</option>
+            </select>
+        </div>
+        -->
+        
+        <strong>Marker List</strong> [n=<span id="total_markers"></span>]
         <div id="markerlist"></div>
     </div>
-    <div id="map-container">
-        <div id="map"></div>
-    </div>
+    <div id="map-container"><div id="map"></div></div>
   </body>
 </html>
