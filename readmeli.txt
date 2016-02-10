@@ -5,6 +5,31 @@ https://developers.google.com/maps/documentation/javascript/examples/
 https://developers.google.com/maps/articles/toomanymarkers?hl=en
 
 ----------------------------------------
+Fusion Tables
+
+oauth2callback
+
+client_id.json: text file content here:
+{"web":{"client_id":"876796271201-h0fu8tvtbauf07vc3kdjqiik39rgvbgl.apps.googleusercontent.com","project_id":"eol-connectors","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://accounts.google.com/o/oauth2/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"3MSqStGNeqbrIzWWulwaqJOr","redirect_uris":["http://localhost/oauth2callback"],"javascript_origins":["http://localhost"]}}
+
+Client ID:
+876796271201-h0fu8tvtbauf07vc3kdjqiik39rgvbgl.apps.googleusercontent.com
+
+API key:
+AIzaSyCXt2WPrcQniaMomonEruEOi3EHYlGEi3U
+
+insect_dataset:
+
+"tableId": "1jyJICpGHuxXcJHlS9-IqoJ0KxMtUIu1VSOMbIujb",
+
+https://www.google.com/fusiontables/DataSource?docid=1DOsi2-wJKJI1ccGYLik1PQUEJx7h74r4W9G7KZxI
+
+https://www.googleapis.com/fusiontables/v2/tables/1DOsi2-wJKJI1ccGYLik1PQUEJx7h74r4W9G7KZxI/columns?key=AIzaSyCXt2WPrcQniaMomonEruEOi3EHYlGEi3U
+
+----------------------------------------
+select all rows from fusion tables:
+https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20*%20FROM%201YPvGpDseeNeODm8uAdd-TPm_WjI89c-uat0Dy-H8&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ
+-----------------------------------------
 
 drag zoom feature: 
 http://google-maps-utility-library-v3.googlecode.com/svn/tags/keydragzoom/1.0/docs/examples.html
