@@ -2,6 +2,10 @@ https://googlemaps.github.io/libraries
 https://developers.google.com/maps/documentation/javascript/examples/
 ----------------------------------------
 
+https://developers.google.com/maps/articles/toomanymarkers?hl=en
+
+----------------------------------------
+
 drag zoom feature: 
 http://google-maps-utility-library-v3.googlecode.com/svn/tags/keydragzoom/1.0/docs/examples.html
 https://code.google.com/archive/p/gmaps-utility-library-dev/

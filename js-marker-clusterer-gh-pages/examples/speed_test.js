@@ -94,11 +94,11 @@ function clustersOnOff()
 function get_center_lat_long()
 {
     var bound = new google.maps.LatLngBounds();
-    speedTest.pics = data.photos;
+    speedTest.pics = data.records;
     var numMarkers = speedTest.pics.length;
     for (var i = 0; i < numMarkers; i++) 
     {
-      bound.extend( new google.maps.LatLng(speedTest.pics[i].latitude, speedTest.pics[i].longitude) );
+      bound.extend( new google.maps.LatLng(speedTest.pics[i].lat, speedTest.pics[i].lon) );
     }
     // console.log( bound.getCenter() );
     return bound.getCenter();
@@ -129,7 +129,7 @@ speedTest.init = function() {
     speedTest.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
   //end customized controls
 
-  speedTest.pics = data.photos;
+  speedTest.pics = data.records;
   speedTest.map.enableKeyDragZoom();  //for key-drag-zoom
   
   //start spiderfy
@@ -199,7 +199,7 @@ speedTest.showMarkers = function() {
   $('total_markers').innerHTML = numMarkers;
 
   for (var i = 0; i < numMarkers; i++) {
-    var titleText = speedTest.pics[i].photo_title;
+    var titleText = speedTest.pics[i].catalogNumber;
     if (titleText === '') {
       titleText = 'No title';
     }
@@ -213,7 +213,7 @@ speedTest.showMarkers = function() {
     item.appendChild(title);
     panel.appendChild(item);
 
-    var latLng = new google.maps.LatLng(speedTest.pics[i].latitude, speedTest.pics[i].longitude);
+    var latLng = new google.maps.LatLng(speedTest.pics[i].lat, speedTest.pics[i].lon);
     var imageUrl = 'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=' + 'FFFFFF,008CFF,000000&ext=.png';
     var markerImage = new google.maps.MarkerImage(imageUrl, new google.maps.Size(24, 32));
     var marker = new google.maps.Marker({
@@ -256,19 +256,25 @@ speedTest.markerClickFunction = function(pic, latlng) {
       e.stopPropagation();
       e.preventDefault();
     }
-    var title = pic.photo_title;
-    var url = pic.photo_url;
-    var fileurl = pic.photo_file_url;
+    var title = pic.sciname//photo_title;
+    // var fileurl = pic.photo_file_url;
 
-    var infoHtml = '<div class="info"><h3>' + title +
-      '</h3><div class="info-body">' +
-      '<a href="' + url + '" target="_blank"><img src="' +
-      fileurl + '" class="info-img"/></a></div>' +
-      '<a href="http://www.panoramio.com/" target="_blank">' +
-      '<img src="http://maps.google.com/intl/en_ALL/mapfiles/' +
-      'iw_panoramio.png"/></a><br/>' +
-      '<a href="' + pic.owner_url + '" target="_blank">' + pic.owner_name +
-      '</a></div></div>';
+    var infoHtml = '<div class="info"><h3>' + title + '</h3>';
+                        // '<div class="info-body"></div>' + '<br/>' +
+
+    if(pic.pic_url) {infoHtml += '<div class="info-body"><img src="' + pic.pic_url + '" class="info-img"/></div><br/>';}
+                        
+    
+    if(pic.catalogNumber) {infoHtml += 'Catalog number: ' + pic.catalogNumber + '<br/>';}
+                        
+                        
+    infoHtml += 'Source portal: <a href="http://www.gbif.org/occurrence/' + pic.gbifID + '" target="_blank">GBIF data</a>' + '<br/>' +
+                        'Publisher: <a href="http://www.gbif.org/publisher/' + pic.publisher_id + '" target="_blank">' + pic.publisher + '</a><br/>' +
+                        'Dataset: <a href="http://www.gbif.org/dataset/' + pic.dataset_id + '" target="_blank">' + pic.dataset + '</a><br/>';
+    // if(pic.recordedBy) {infoHtml += 'Recorded by: ' + pic.recordedBy + '<br/>';}
+    // if(pic.identifiedBy) {infoHtml += 'Identified by: ' + pic.identifiedBy + '<br/>';}
+                        
+     infoHtml += '</div>';
 
     speedTest.infoWindow.setContent(infoHtml);
     speedTest.infoWindow.setPosition(latlng);
