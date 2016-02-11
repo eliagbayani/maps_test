@@ -10,7 +10,10 @@ Fusion Tables
 oauth2callback
 
 client_id.json: text file content here:
-{"web":{"client_id":"876796271201-h0fu8tvtbauf07vc3kdjqiik39rgvbgl.apps.googleusercontent.com","project_id":"eol-connectors","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://accounts.google.com/o/oauth2/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"3MSqStGNeqbrIzWWulwaqJOr","redirect_uris":["http://localhost/oauth2callback"],"javascript_origins":["http://localhost"]}}
+{"web":{"client_id":"876796271201-h0fu8tvtbauf07vc3kdjqiik39rgvbgl.apps.googleusercontent.com",
+    "project_id":"eol-connectors",
+    "auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://accounts.google.com/o/oauth2/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+    "client_secret":"3MSqStGNeqbrIzWWulwaqJOr","redirect_uris":["http://localhost/oauth2callback"],"javascript_origins":["http://localhost"]}}
 
 Client ID:
 876796271201-h0fu8tvtbauf07vc3kdjqiik39rgvbgl.apps.googleusercontent.com
@@ -30,7 +33,13 @@ https://www.googleapis.com/fusiontables/v2/tables/1DOsi2-wJKJI1ccGYLik1PQUEJx7h7
 select all rows from fusion tables:
 https://www.googleapis.com/fusiontables/v2/query?sql=SELECT%20*%20FROM%201YPvGpDseeNeODm8uAdd-TPm_WjI89c-uat0Dy-H8&key=AIzaSyAm9yWCV7JPCTHCJut8whOjARd7pwROFDQ
 -----------------------------------------
+http://stackoverflow.com/questions/23206190/insert-a-row-to-google-fusion-table-using-php
+https://github.com/metaodi/GFTPrototype/blob/master/examples/php/UpdateTable.php
+https://github.com/google/google-api-php-client/blob/master/src/Google/Service/Fusiontables.php
 
+
+
+===========================================================================================
 drag zoom feature: 
 http://google-maps-utility-library-v3.googlecode.com/svn/tags/keydragzoom/1.0/docs/examples.html
 https://code.google.com/archive/p/gmaps-utility-library-dev/
