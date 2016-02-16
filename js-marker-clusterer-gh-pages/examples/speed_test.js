@@ -71,6 +71,17 @@ function CenterControl(controlDiv, map) {
     goRadioText.innerHTML = 'Clusters ON';
     goRadioUI.appendChild(goRadioText);
 
+    // Set CSS for Panel
+    var goPanelUI = document.createElement('div');
+    goPanelUI.id = "goPanelUI";
+    goPanelUI.title = 'Toggle Panel';
+    controlDiv.appendChild(goPanelUI);
+    // CSS for text
+    var goPanelText = document.createElement('div');
+    goPanelText.id = 'goPanelText';
+    goPanelText.innerHTML = 'Panel ON';
+    goPanelUI.appendChild(goPanelText);
+
 
     // Set up the click event listener
     goBackUI.addEventListener('click', function() {speedTest.back();});
@@ -81,8 +92,33 @@ function CenterControl(controlDiv, map) {
         });
 
     goRadioUI.addEventListener('click', function() {clustersOnOff();});
+    goPanelUI.addEventListener('click', function() {panelShowHide();});
+    
 }
 //end customized controls
+
+function panelShowHide()
+{
+    if ($('goPanelText').innerHTML == "Panel ON")
+    {
+        $('goPanelText').innerHTML = "Panel OFF";
+        
+        var el = document.getElementById("panel");
+        el.style.display = 'none';
+        el.style.width = 0;
+        google.maps.event.trigger(speedTest.map, 'resize');
+    }
+    else
+    {
+        $('goPanelText').innerHTML = "Panel ON";
+        var el = document.getElementById("panel");
+        el.style.display = 'block';
+        el.style.width = "17%";
+        google.maps.event.trigger(speedTest.map, 'resize');
+        
+    }
+}
+
 
 function clustersOnOff()
 {
@@ -109,7 +145,7 @@ speedTest.init = function() {
   //start centering map
   center_latlong = get_center_lat_long()
   // var latlng = new google.maps.LatLng(39.91, 116.38);
-  var latlng = new google.maps.LatLng(center_latlong["G"], center_latlong["K"]);
+  var latlng = new google.maps.LatLng(center_latlong.lat(), center_latlong.lng());
   //end centering map
   
   var options = {
@@ -201,7 +237,7 @@ speedTest.showMarkers = function() {
   for (var i = 0; i < numMarkers; i++) {
     var titleText = speedTest.pics[i].catalogNumber;
     if (titleText === '') {
-      titleText = 'No title';
+      titleText = 'No catalog number';
     }
 
     var item = document.createElement('DIV');
@@ -256,26 +292,18 @@ speedTest.markerClickFunction = function(pic, latlng) {
       e.stopPropagation();
       e.preventDefault();
     }
-    var title = pic.sciname//photo_title;
-    // var fileurl = pic.photo_file_url;
-
+    var title = pic.sciname;
     var infoHtml = '<div class="info"><h3>' + title + '</h3>';
-                        // '<div class="info-body"></div>' + '<br/>' +
 
-    if(pic.pic_url) {infoHtml += '<div class="info-body"><img src="' + pic.pic_url + '" class="info-img"/></div><br/>';}
-                        
-    
+    if(pic.pic_url)       {infoHtml += '<div class="info-body"><img src="' + pic.pic_url + '" class="info-img"/></div><br/>';}
     if(pic.catalogNumber) {infoHtml += 'Catalog number: ' + pic.catalogNumber + '<br/>';}
-                        
-                        
     infoHtml += 'Source portal: <a href="http://www.gbif.org/occurrence/' + pic.gbifID + '" target="_blank">GBIF data</a>' + '<br/>' +
-                        'Publisher: <a href="http://www.gbif.org/publisher/' + pic.publisher_id + '" target="_blank">' + pic.publisher + '</a><br/>' +
-                        'Dataset: <a href="http://www.gbif.org/dataset/' + pic.dataset_id + '" target="_blank">' + pic.dataset + '</a><br/>';
-    // if(pic.recordedBy) {infoHtml += 'Recorded by: ' + pic.recordedBy + '<br/>';}
-    // if(pic.identifiedBy) {infoHtml += 'Identified by: ' + pic.identifiedBy + '<br/>';}
-                        
-     infoHtml += '</div>';
-
+                'Publisher: <a href="http://www.gbif.org/publisher/' + pic.publisher_id + '" target="_blank">' + pic.publisher + '</a><br/>' +
+                'Dataset: <a href="http://www.gbif.org/dataset/' + pic.dataset_id + '" target="_blank">' + pic.dataset + '</a><br/>';
+    if(pic.recordedBy)   {infoHtml += 'Recorded by: ' + pic.recordedBy + '<br/>';}
+    if(pic.identifiedBy) {infoHtml += 'Identified by: ' + pic.identifiedBy + '<br/>';}
+    infoHtml += '</div>';
+    
     speedTest.infoWindow.setContent(infoHtml);
     speedTest.infoWindow.setPosition(latlng);
     speedTest.infoWindow.open(speedTest.map);
