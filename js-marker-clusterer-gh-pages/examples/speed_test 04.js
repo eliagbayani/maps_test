@@ -82,18 +82,6 @@ function CenterControl(controlDiv, map) {
     goPanelText.innerHTML = 'Panel ON';
     goPanelUI.appendChild(goPanelText);
 
-//===========
-    // Set CSS for Panel
-    var goFullUI = document.createElement('div');
-    goFullUI.id = "goFullUI";
-    goFullUI.title = 'Go Fullscreen';
-    controlDiv.appendChild(goFullUI);
-    // CSS for text
-    var goFullText = document.createElement('div');
-    goFullText.id = 'goFullText';
-    goFullText.innerHTML = 'Go Fullscreen';
-    goFullUI.appendChild(goFullText);
-//===========
 
     // Set up the click event listener
     goBackUI.addEventListener('click', function() {speedTest.back();});
@@ -105,42 +93,16 @@ function CenterControl(controlDiv, map) {
 
     goRadioUI.addEventListener('click', function() {clustersOnOff();});
     goPanelUI.addEventListener('click', function() {panelShowHide();});
-    goFullUI.addEventListener('click', function() {goFullScreen();});
     
 }
 //end customized controls
 
-function goFullScreen()
-{
-    var elem = document.getElementById("map");
-    if (elem.requestFullscreen)
-    {
-      alert(1);
-      elem.requestFullscreen();
-    } else if (elem.msRequestFullscreen)
-    {
-        alert(2);
-      elem.msRequestFullscreen();
-    } else if (elem.mozRequestFullScreen)
-    {
-        // alert(3);
-      elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen)
-    {
-        
-        // alert(4);
-        // setTimeout(1);
-        // alert(45);
-        // elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-        // elem.webkitRequestFullscreen();
-    }
-    speedTest.map.setOptions(initial_map);
-}
 function panelShowHide()
 {
     if ($('goPanelText').innerHTML == "Panel ON")
     {
         $('goPanelText').innerHTML = "Panel OFF";
+        
         var el = document.getElementById("panel");
         el.style.display = 'none';
         el.style.width = 0;
@@ -153,6 +115,7 @@ function panelShowHide()
         el.style.display = 'block';
         el.style.width = "17%";
         google.maps.event.trigger(speedTest.map, 'resize');
+        
     }
 }
 
@@ -217,10 +180,6 @@ speedTest.init = function() {
   speedTest.infoWindow = new google.maps.InfoWindow();
   speedTest.showMarkers();
   google.maps.event.addListener(speedTest.map, 'idle', function(){record_history();}); //for back-button    //other option for event 'tilesloaded'
-  
-  
-  
-  
   
 };
 

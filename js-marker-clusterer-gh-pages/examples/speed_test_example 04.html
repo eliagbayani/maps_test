@@ -10,17 +10,16 @@
         font-family: Arial;
         font-size: 12px;
       }
-      
-/*      #panel2 {
+      #panel2 {
         float: left;
         height: 95%;
-        width: 25%;   
+        width: 25%;   /* 17%*/
       }
-*/      
+      
       #panel {
         float: left;
         height: 95%;
-        width: 17%;   /* 17%*/
+        width: 25%;   /* 17%*/
       }
       #map-container {
 /*        margin-left: 300px;*/
@@ -48,7 +47,7 @@
       .title:visited {
         color: #000;
       }
-      .title:hover, #goBackUI:hover, #goNextUI:hover, #goOrigUI:hover, #goRadioUI:hover, #goPanelUI:hover, #goFullUI:hover {
+      .title:hover, #goBackUI:hover, #goNextUI:hover, #goOrigUI:hover, #goRadioUI:hover, #goPanelUI:hover {
         background: #e0ecff;
       }
       #timetaken {
@@ -76,7 +75,7 @@
       
       
 
-      #goBackUI, #goNextUI, #goOrigUI, #goRadioUI, #goPanelUI, #goFullUI {
+      #goBackUI, #goNextUI, #goOrigUI, #goRadioUI, #goPanelUI {
         background-color: #fff;
         border: 2px solid #fff;
 /*        border-radius: 3px;*/
@@ -92,7 +91,7 @@
         goBackUI.style.marginBottom = '2px'; //'22px';
 */
 
-      #goBackText, #goNextText, #goOrigText, #goRadioText, #goPanelText, #goFullText {
+      #goBackText, #goNextText, #goOrigText, #goRadioText, #goPanelText {
         color: rgb(25,25,25);
         font-family: Roboto,Arial,sans-serif;
         font-size: 10px;
@@ -108,20 +107,52 @@
       
     </style>
 
-    <!-- <script src="https://maps.googleapis.com/maps/api/js"></script> -->
-    <!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> -->  <!-- worked for MarkerClusterer -->
+    <!--
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+    -->
+    
+    <!--
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> -->  <!-- worked for MarkerClusterer -->
 
     <script src="http://maps.google.com/maps/api/js"></script>   <!-- for spiderfy --> <!-- ?v=3.9&amp;sensor=false -->
+
     <script src="../../eli_js/keydragzoom_packed.js" type="text/javascript"></script> <!-- for key-drag-zoom -->
+    
     <script src="data/Chanos chanos.json"></script>
+    
     <script src="../../eli_js/bin/oms.min.js"></script>                                 <!-- for spiderfy -->
+    
+    <!-- working, use to toggle from compiled to standard
+    <script>
+      var script = '<script type="text/javascript" src="../src/markerclusterer';
+      if (document.location.search.indexOf('compiled') !== -1) {
+        script += '_compiled';
+      }
+      script += '.js"><' + '/script>';
+      document.write(script);
+    </script>
+    -->
     <script src="../src/markerclusterer_compiled.js" type="text/javascript"></script> <!-- for markerclusterer -->
+    
     <script src="speed_test.js"></script>
 
     <script>
           google.maps.event.addDomListener(window, 'load', speedTest.init);
     </script>
     
+    <!-- seems to be for google-analytics
+    <script>
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-12846745-20']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' === document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    -->
   </head>
 
 <body>
@@ -132,13 +163,14 @@
     <div id="panel">
         <div>
             <!-- <input type="checkbox" checked="checked" id="usegmm"/> -->
+            <span>Cluster</span>
             <span>Time used: <span id="timetaken"></span> ms</span>
             [n=<span id="total_markers"></span>]
         </div>
         <div id="markerlist"></div>
     </div>
     <div id="map-container">
-        <div id="map" allowfullscreen="true"></div>
+        <div id="map"></div>
     </div>
 
     
