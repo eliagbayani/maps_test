@@ -17,6 +17,14 @@
         width: 25%;   
       }
       
+
+      #gmap {
+        margin: 0;
+        padding: 0;
+        font-family: Arial;
+        font-size: 12px;
+      }
+      
       #panel {
         float: left;
         height: 95%;
@@ -121,8 +129,10 @@
     
     <div id="gmap">
         <div id="panel">
-            <div>
-                <span>Time used: <span id="timetaken"></span> ms</span>
+            <div id="nothing">
+                <!-- <span> -->
+                    Time used: <span id="timetaken"></span> ms
+                <!-- </span> -->
                 [Georeference records: <span id="total_markers"></span>]
             </div>
             <div id="markerlist"></div>

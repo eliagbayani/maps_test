@@ -83,7 +83,7 @@ function CenterControl(controlDiv, map) {
     goPanelUI.appendChild(goPanelText);
 
 //===========
-    // Set CSS for Panel
+    // Set CSS for Full
     var goFullUI = document.createElement('div');
     goFullUI.id = "goFullUI";
     goFullUI.title = 'Toggle Fullscreen';
@@ -112,7 +112,7 @@ function CenterControl(controlDiv, map) {
 
 function goFullScreen()
 {
-    var elem = document.getElementById("map"); //gmap
+    var elem = document.getElementById("gmap"); //gmap or map-container
 
     // if (elem.requestFullscreen)         {elem.requestFullscreen();} 
     // else if (elem.msRequestFullscreen)  {elem.msRequestFullscreen();} 
@@ -166,19 +166,13 @@ function exitHandler() {
         if(!document.webkitIsFullScreen)
         {
             $('goFullText').innerHTML = "Fullscreen OFF2";
-            var elem = document.getElementById("map"); //gmap
+            var elem = document.getElementById("gmap"); //gmap or map-container
             elem.style.width = "";
         }
-
         if(document.mozFullScreen) $('goFullText').innerHTML = "Fullscreen ON2";
-        
-        
-        
-        
     }
 }
 // end: listeners for fullscreenchanges
-
 
 function panelShowHide()
 {
@@ -186,13 +180,13 @@ function panelShowHide()
     if ($('goPanelText').innerHTML == "Panel ON")
     {
         $('goPanelText').innerHTML = "Panel OFF";
-        el.style.display = 'none';
+        // el.style.display = 'none';
         el.style.width = 0;
     }
     else
     {
         $('goPanelText').innerHTML = "Panel ON";
-        el.style.display = 'block';
+        // el.style.display = 'block';
         el.style.width = "17%";
     }
     google.maps.event.trigger(speedTest.map, 'resize');
@@ -258,10 +252,6 @@ speedTest.init = function() {
   speedTest.infoWindow = new google.maps.InfoWindow();
   speedTest.showMarkers();
   google.maps.event.addListener(speedTest.map, 'idle', function(){record_history();}); //for back-button    //other option for event 'tilesloaded'
-  
-  
-  
-  
   
 };
 
