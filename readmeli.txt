@@ -95,7 +95,17 @@ http://stackoverflow.com/questions/10634199/find-center-of-multiple-locations-in
 another option is to use fitbounds: didn't use this
 http://stackoverflow.com/questions/1556921/google-map-api-v3-set-bounds-and-center
 
+
+
 ----------------------------------------
+
+best way to detect when in FullScreen:
+http://stackoverflow.com/questions/10706070/how-to-detect-when-a-page-exits-fullscreen
+
+https://hacks.mozilla.org/2012/01/using-the-fullscreen-api-in-web-browsers/
+----------------------------------------
+https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API#AutoCompatibilityTable
+
 // function goFullScreen() {
 //   if (!document.fullscreenElement &&    // alternative standard method
 //       !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) 
