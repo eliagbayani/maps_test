@@ -86,12 +86,12 @@ function CenterControl(controlDiv, map) {
     // Set CSS for Panel
     var goFullUI = document.createElement('div');
     goFullUI.id = "goFullUI";
-    goFullUI.title = 'Toggle Fullscreen';
+    goFullUI.title = 'Go Fullscreen';
     controlDiv.appendChild(goFullUI);
     // CSS for text
     var goFullText = document.createElement('div');
     goFullText.id = 'goFullText';
-    goFullText.innerHTML = 'Fullscreen OFF orig';
+    goFullText.innerHTML = 'Go Fullscreen';
     goFullUI.appendChild(goFullText);
 //===========
 
@@ -112,91 +112,60 @@ function CenterControl(controlDiv, map) {
 
 function goFullScreen()
 {
-    var elem = document.getElementById("map"); //gmap
-
-    // if (elem.requestFullscreen)         {elem.requestFullscreen();} 
-    // else if (elem.msRequestFullscreen)  {elem.msRequestFullscreen();} 
-    // else if (elem.mozRequestFullScreen) {elem.mozRequestFullScreen();} //Firefox 
-    // else if (elem.webkitRequestFullscreen) //Chrome and Safari
-    // {
-    //     // elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-    //     elem.style.width = "100%";
-    //     elem.style.height = "100%";
-    //     elem.webkitRequestFullscreen();
-    // }
-
-    if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) 
-    {  // current working methods
-      $('goFullText').innerHTML = "Fullscreen ON";
-      if      (elem.requestFullscreen)      {elem.requestFullscreen();} 
-      else if (elem.msRequestFullscreen)    {elem.msRequestFullscreen();} 
-      else if (elem.mozRequestFullScreen)   {elem.mozRequestFullScreen();} 
-      else if (elem.webkitRequestFullscreen) {
+    var elem = document.getElementById("map-container");
+    if (elem.requestFullscreen)
+    {
+      alert(1);
+      elem.requestFullscreen();
+    } else if (elem.msRequestFullscreen)
+    {
+      alert(2);
+      elem.msRequestFullscreen();
+    } else if (elem.mozRequestFullScreen)
+    {
+      // alert(3);
+      elem.mozRequestFullScreen();
+    } 
+    else if (elem.webkitRequestFullscreen)
+    {
+        alert(4);
+        // elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
         elem.style.width = "100%";
         elem.style.height = "100%";
-        elem.webkitRequestFullscreen(); //Element.ALLOW_KEYBOARD_INPUT
-      }
-    } else 
-    {
-      $('goFullText').innerHTML = "Fullscreen OFF";
-      if      (document.exitFullscreen) {document.exitFullscreen();} 
-      else if (document.msExitFullscreen) {document.msExitFullscreen();} 
-      else if (document.mozCancelFullScreen) {document.mozCancelFullScreen();} 
-      else if (document.webkitExitFullscreen) {
-        elem.style.width = "";
-        document.webkitExitFullscreen();
-      }
+        elem.webkitRequestFullscreen();
     }
-
-    google.maps.event.trigger(speedTest.map, 'resize');
     
+    // speedTest.map.setOptions(initial_map);
 }
 
-
-// start: listeners for fullscreenchanges
-if (document.addEventListener) {
-    document.addEventListener('webkitfullscreenchange', exitHandler, false);
-    document.addEventListener('mozfullscreenchange', exitHandler, false);
-    document.addEventListener('fullscreenchange', exitHandler, false);
-    document.addEventListener('MSFullscreenChange', exitHandler, false);
-}
-function exitHandler() {
-    if (document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement !== null)
-    {
-        if(!document.webkitIsFullScreen)
-        {
-            $('goFullText').innerHTML = "Fullscreen OFF2";
-            var elem = document.getElementById("map"); //gmap
-            elem.style.width = "";
-        }
-
-        if(document.mozFullScreen) $('goFullText').innerHTML = "Fullscreen ON2";
-        
-        
-        
-        
+document.onkeypress = function(evt) {
+    evt = evt || window.event;
+    if (evt.keyCode == 27) { // alert("Esc was pressed");
+        var elem = document.getElementById("map-container");
+        elem.style.width = "";
     }
-}
-// end: listeners for fullscreenchanges
-
+};
 
 function panelShowHide()
 {
-    var el = document.getElementById("panel");
     if ($('goPanelText').innerHTML == "Panel ON")
     {
         $('goPanelText').innerHTML = "Panel OFF";
+        var el = document.getElementById("panel");
         el.style.display = 'none';
         el.style.width = 0;
+        google.maps.event.trigger(speedTest.map, 'resize');
     }
     else
     {
         $('goPanelText').innerHTML = "Panel ON";
+        var el = document.getElementById("panel");
         el.style.display = 'block';
         el.style.width = "17%";
+        google.maps.event.trigger(speedTest.map, 'resize');
     }
-    google.maps.event.trigger(speedTest.map, 'resize');
 }
+
 
 function clustersOnOff()
 {

@@ -11,12 +11,12 @@
         font-size: 12px;
       }
       
-      #panel2 {
+/*      #panel2 {
         float: left;
         height: 95%;
         width: 25%;   
       }
-      
+*/      
       #panel {
         float: left;
         height: 95%;
@@ -28,7 +28,7 @@
         
       }
       #map {
-        height: 100%; /* 100% */
+        height: 100%;
       }
       #markerlist {
         height: 100%;
@@ -73,15 +73,24 @@
         width: 100%; /* you can use % */
       }
       
+      
+      
 
       #goBackUI, #goNextUI, #goOrigUI, #goRadioUI, #goPanelUI, #goFullUI {
         background-color: #fff;
         border: 2px solid #fff;
+/*        border-radius: 3px;*/
         box-shadow: 0 2px 6px rgba(0,0,0,.3);
         cursor: pointer;
         float: left;
+/*        margin-bottom: 2px;*/
+/*        margin-top: 0px;*/
+
         text-align: center;
       }
+/*      goBackUI.style.textAlign = 'center';
+        goBackUI.style.marginBottom = '2px'; //'22px';
+*/
 
       #goBackText, #goNextText, #goOrigText, #goRadioText, #goPanelText, #goFullText {
         color: rgb(25,25,25);
@@ -93,7 +102,7 @@
       }
 
       #goNextUI {
-/*        margin-left: 0px;*/
+/*        margin-left: 12px;*/
       }
       
       
@@ -116,22 +125,21 @@
   </head>
 
 <body>
+    <!--
     <div id="panel2">eli is here...</div> 
+    -->
     
-    
-    <div id="gmap">
-        <div id="panel">
-            <div>
-                <span>Time used: <span id="timetaken"></span> ms</span>
-                [Georeference records: <span id="total_markers"></span>]
-            </div>
-            <div id="markerlist"></div>
+    <div id="panel">
+        <div>
+            <!-- <input type="checkbox" checked="checked" id="usegmm"/> -->
+            <span>Time used: <span id="timetaken"></span> ms</span>
+            [n=<span id="total_markers"></span>]
         </div>
-        <div id="map-container"> <!-- allowfullscreen="true" -->
-            <div id="map"></div>
-        </div>
+        <div id="markerlist"></div>
     </div>
-    
+    <div id="map-container"> <!-- allowfullscreen="true" -->
+        <div id="map"></div>
+    </div>
 
     
   </body>

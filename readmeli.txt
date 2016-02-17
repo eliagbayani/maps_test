@@ -2,6 +2,8 @@ https://googlemaps.github.io/libraries
 https://developers.google.com/maps/documentation/javascript/examples/
 ----------------------------------------
 
+very nice use if divs and html and css: http://stackoverflow.com/questions/15632287/set-max-height-on-inner-div-so-scroll-bars-appear-but-not-on-parent-div
+---------------------------------------
 https://developers.google.com/maps/articles/toomanymarkers?hl=en
 
 ----------------------------------------
@@ -94,7 +96,68 @@ another option is to use fitbounds: didn't use this
 http://stackoverflow.com/questions/1556921/google-map-api-v3-set-bounds-and-center
 
 ----------------------------------------
+// function goFullScreen() {
+//   if (!document.fullscreenElement &&    // alternative standard method
+//       !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) 
+//   {  // current working methods
+//     $('goFullText').innerHTML = "Fullscreen ON";
+//     if (document.documentElement.requestFullscreen) {
+//       document.documentElement.requestFullscreen();
+//     } else if (document.documentElement.msRequestFullscreen) {
+//       document.documentElement.msRequestFullscreen();
+//     } else if (document.documentElement.mozRequestFullScreen) {
+//       document.documentElement.mozRequestFullScreen();
+//     } else if (document.documentElement.webkitRequestFullscreen) {
+//       document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+//     }
+//   } else 
+//   {
+//     $('goFullText').innerHTML = "Fullscreen OFF";
+//     if (document.exitFullscreen) {
+//       document.exitFullscreen();
+//     } else if (document.msExitFullscreen) {
+//       document.msExitFullscreen();
+//     } else if (document.mozCancelFullScreen) {
+//       document.mozCancelFullScreen();
+//     } else if (document.webkitExitFullscreen) {
+//       document.webkitExitFullscreen();
+//     }
+//   }
+// }
+
 ----------------------------------------
+/*
+document.onkeypress = function(evt) {
+    evt = evt || window.event;
+    var charCode = evt.charCode || evt.keyCode || evt.which;
+    if (charCode == 27) { // alert("Esc was pressed");
+        alert("esc is pressed");
+        if ($('goFullText').innerHTML == "Fullscreen ON 3")
+        {
+            $('goFullText').innerHTML = "Fullscreen OFF 3";
+        }
+    }
+};
+document.keypress = function(e){
+    var charCode = e.charCode || e.keyCode || e.which;
+    if(charCode == 27){
+        alert("esc 3");
+    }
+};
+document.keyup = function(e) {
+  var charCode = e.charCode || e.keyCode || e.which;
+  if (charCode == 27) 
+  {
+      alert("esc is pressed 2");
+      if ($('goFullText').innerHTML == "Fullscreen ON")
+      {
+          $('goFullText').innerHTML = "Fullscreen OFF";
+      }
+
+  }
+};
+*/
+
 ----------------------------------------
 ----------------------------------------
 
