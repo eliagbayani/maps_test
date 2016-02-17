@@ -112,30 +112,40 @@ function CenterControl(controlDiv, map) {
 
 function goFullScreen()
 {
-    var elem = document.getElementById("map");
+    var elem = document.getElementById("map-container");
     if (elem.requestFullscreen)
     {
       alert(1);
       elem.requestFullscreen();
     } else if (elem.msRequestFullscreen)
     {
-        alert(2);
+      alert(2);
       elem.msRequestFullscreen();
     } else if (elem.mozRequestFullScreen)
     {
-        // alert(3);
+      // alert(3);
       elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen)
+    } 
+    else if (elem.webkitRequestFullscreen)
     {
-        
-        // alert(4);
-        // setTimeout(1);
-        // alert(45);
+        alert(4);
         // elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-        // elem.webkitRequestFullscreen();
+        elem.style.width = "100%";
+        elem.style.height = "100%";
+        elem.webkitRequestFullscreen();
     }
-    speedTest.map.setOptions(initial_map);
+    
+    // speedTest.map.setOptions(initial_map);
 }
+
+document.onkeypress = function(evt) {
+    evt = evt || window.event;
+    if (evt.keyCode == 27) { // alert("Esc was pressed");
+        var elem = document.getElementById("map-container");
+        elem.style.width = "";
+    }
+};
+
 function panelShowHide()
 {
     if ($('goPanelText').innerHTML == "Panel ON")
