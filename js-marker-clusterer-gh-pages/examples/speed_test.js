@@ -152,7 +152,6 @@ function goFullScreen()
     
 }
 
-
 // start: listeners for fullscreenchanges
 if (document.addEventListener) {
     document.addEventListener('webkitfullscreenchange', exitHandler, false);
@@ -383,7 +382,6 @@ speedTest.markerClickFunction = function(pic, latlng) {
 };
 
 speedTest.clear = function() {
-  $('timetaken').innerHTML = 'cleaning...';
   for (var i = 0, marker; marker = speedTest.markers[i]; i++) {
     marker.setMap(null);
   }
@@ -395,9 +393,6 @@ speedTest.change = function() {
 };
 
 speedTest.time = function() {
-  $('timetaken').innerHTML = 'timing...';
-  var start = new Date();
-
   if (!document.getElementById("goRadioText")) {speedTest.markerClusterer = new MarkerClusterer(speedTest.map, speedTest.markers);}
   else
   {
@@ -409,7 +404,4 @@ speedTest.time = function() {
         }
       }
   }
-
-  var end = new Date();
-  $('timetaken').innerHTML = end - start;
 };
