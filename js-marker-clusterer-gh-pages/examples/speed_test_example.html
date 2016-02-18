@@ -9,6 +9,7 @@
         padding: 0;
         font-family: Arial;
         font-size: 12px;
+/*        background: white;*/
       }
       
       #panel2 {
@@ -29,10 +30,12 @@
         float: left;
         height: 95%;
         width: 17%;   /* 17%*/
+        /*background: white;*/ /* needed bec. fullscreen in Firefox makes background color black */
       }
       #map-container {
 /*        margin-left: 300px;*/
         height: 100%;
+        background: white;
         
       }
       #map {
@@ -42,6 +45,7 @@
         height: 100%;
         margin: 10px 5px 0 10px;
         overflow: auto;
+/*        background: white; */ /* needed bec. fullscreen in Firefox makes background color black */
       }
       .title {
         border-bottom: 1px solid #e0ecff;
@@ -58,9 +62,6 @@
       }
       .title:hover, #goBackUI:hover, #goNextUI:hover, #goOrigUI:hover, #goRadioUI:hover, #goPanelUI:hover, #goFullUI:hover {
         background: #e0ecff;
-      }
-      #timetaken {
-        color: #f00;
       }
       .info {
         width: 400px;
@@ -93,7 +94,7 @@
 
       #goBackText, #goNextText, #goOrigText, #goRadioText, #goPanelText, #goFullText {
         color: rgb(25,25,25);
-        font-family: Roboto,Arial,sans-serif;
+        font-family: Arial,sans-serif;
         font-size: 10px;
         line-height: 15px;
         padding-left: 5px;
@@ -126,14 +127,10 @@
 <body>
     <div id="panel2">eli is here...</div> 
     
-    
     <div id="gmap">
         <div id="panel">
             <div id="nothing">
-                <!-- <span> -->
-                    Time used: <span id="timetaken"></span> ms
-                <!-- </span> -->
-                [Georeference records: <span id="total_markers"></span>]
+                Georeference records: <span id="total_markers"></span>
             </div>
             <div id="markerlist"></div>
         </div>
