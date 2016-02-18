@@ -134,9 +134,15 @@ function goFullScreen()
       else if (elem.webkitRequestFullscreen) {
         elem.style.width = "100%";
         elem.style.height = "100%";
+        
+
         elem.webkitRequestFullscreen(); //Element.ALLOW_KEYBOARD_INPUT
+        // panelShowHide();
+        // panelShowHide();
+        // speedTest.change();
+        
       }
-    } else 
+    } else
     {
       $('goFullText').innerHTML = "Fullscreen OFF";
       if      (document.exitFullscreen) {document.exitFullscreen();} 
