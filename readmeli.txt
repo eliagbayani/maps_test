@@ -169,5 +169,31 @@ document.keyup = function(e) {
 */
 
 ----------------------------------------
+<div class='googft-info-window' style='height: 22em; overflow-y: auto'>
+<img src="{pic_url}" style="vertical-align: top; height: 15px"/>
+<b>Catalog number:</b>  {catalogNumber}<br/>
+<b>sciname:</b>         {sciname}<br/>
+<b>Source portal:</b>   <a href="http://www.gbif.org/occurrence/{gbifID}" target="_blank">GBIF data</a><br/>
+<b>Publisher:</b>       <a href="http://www.gbif.org/publisher/{publisher_id}" target="_blank">{publisher}</a><br/>
+<b>Dataset:</b>         <a href="http://www.gbif.org/dataset/{dataset_id}" target="_blank">{dataset}</a><br/>
+<b>Recorded by:</b>     {recordedBy}<br/>
+<b>Identified by:</b>   {identifiedBy}<br/>
+</div>
+
+
+{template .contents}
+<div class='googft-info-window' style='{if $data.value.pic_url}height: 300px;{/if} overflow-y: auto'>
+<h3>{$data.value.sciname}</h3><br/>
+{if $data.value.pic_url}<img src="{$data.value.pic_url}" style="vertical-align: top; height: 15px"/>{/if}
+<b>Catalog number:</b>  {$data.value.catalogNumber}<br/>
+<b>Source portal:</b>   <a href="http://www.gbif.org/occurrence/{$data.value.gbifID}" target="_blank">GBIF data</a><br/>
+<b>Publisher:</b>       <a href="http://www.gbif.org/publisher/{$data.value.publisher_id}" target="_blank">{$data.value.publisher}</a><br/>
+<b>Dataset:</b>         <a href="http://www.gbif.org/dataset/{$data.value.dataset_id}" target="_blank">{$data.value.dataset}</a><br/>
+{if $data.value.recordedBy}<b>Recorded by:</b>     {$data.value.recordedBy}<br/>{/if}
+{if $data.value.identifiedBy}<b>Identified by:</b>     {$data.value.identifiedBy}<br/>{/if}
+</div>
+{/template}
+
+https://www.google.com/fusiontables/embedviz?q=select+col7+from+1YPvGpDseeNeODm8uAdd-TPm_WjI89c-uat0Dy-H8&viz=MAP&h=false&lat=46.70442812936786&lng=-51.80517906249992&t=1&z=2&l=col7&y=2&tmplt=2&hml=TWO_COL_LAT_LNG
 ----------------------------------------
 
