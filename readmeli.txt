@@ -1,6 +1,9 @@
 https://googlemaps.github.io/libraries
 https://developers.google.com/maps/documentation/javascript/examples/
 ----------------------------------------
+other map developments, good examples: https://code.google.com/archive/p/gmaps-utility-library-dev/
+ON OFF switch: http://jsfiddle.net/podktzbq/
+----------------------------------------
 
 very nice use if divs and html and css: http://stackoverflow.com/questions/15632287/set-max-height-on-inner-div-so-scroll-bars-appear-but-not-on-parent-div
 ---------------------------------------
