@@ -226,7 +226,7 @@ speedTest.init = function() {
   //end centering map
   
   var options = {
-    'zoom': 2,      //2 has overlapping continents
+    'zoom': 3,      //2 has overlapping continents
     'center': latlng,
     'mapTypeId': google.maps.MapTypeId.ROADMAP,
     'scaleControl': true
