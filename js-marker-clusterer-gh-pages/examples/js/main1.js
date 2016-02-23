@@ -11,7 +11,7 @@ function $(element) {
 
 var speedTest = {};
 
-speedTest.pics = null;
+speedTest.recs = null;
 speedTest.map = null;
 speedTest.markerClusterer = null;
 speedTest.markers = [];
@@ -207,11 +207,11 @@ function clustersOnOff()
 function get_center_lat_long()
 {
     var bound = new google.maps.LatLngBounds();
-    speedTest.pics = data.records;
-    var numMarkers = speedTest.pics.length;
+    speedTest.recs = data.records;
+    var numMarkers = speedTest.recs.length;
     for (var i = 0; i < numMarkers; i++) 
     {
-      bound.extend( new google.maps.LatLng(speedTest.pics[i].lat, speedTest.pics[i].lon) );
+      bound.extend( new google.maps.LatLng(speedTest.recs[i].lat, speedTest.recs[i].lon) );
     }
     // console.log( bound.getCenter() );
     return bound.getCenter();
@@ -242,7 +242,7 @@ speedTest.init = function() {
     speedTest.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
   //end customized controls
 
-  speedTest.pics = data.records;
+  speedTest.recs = data.records;
   speedTest.map.enableKeyDragZoom();  //for key-drag-zoom
   
   //start spiderfy
@@ -308,11 +308,11 @@ speedTest.showMarkers = function() {
   var panel = $('markerlist');
   panel.innerHTML = '';
   
-  var numMarkers = speedTest.pics.length;
+  var numMarkers = speedTest.recs.length;
   $('total_markers').innerHTML = numMarkers;
 
   for (var i = 0; i < numMarkers; i++) {
-    var titleText = speedTest.pics[i].catalogNumber;
+    var titleText = speedTest.recs[i].catalogNumber;
     if (titleText === '') {
       titleText = 'No catalog number';
     }
@@ -326,7 +326,7 @@ speedTest.showMarkers = function() {
     item.appendChild(title);
     panel.appendChild(item);
 
-    var latLng = new google.maps.LatLng(speedTest.pics[i].lat, speedTest.pics[i].lon);
+    var latLng = new google.maps.LatLng(speedTest.recs[i].lat, speedTest.recs[i].lon);
     var imageUrl = 'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=' + 'FFFFFF,008CFF,000000&ext=.png';
     var markerImage = new google.maps.MarkerImage(imageUrl, new google.maps.Size(24, 32));
     var marker = new google.maps.Marker({
@@ -335,7 +335,7 @@ speedTest.showMarkers = function() {
       'icon': "https://storage.googleapis.com/support-kms-prod/SNP_2752125_en_v0"
     });
 
-    var fn = speedTest.markerClickFunction(speedTest.pics[i], latLng);
+    var fn = speedTest.markerClickFunction(speedTest.recs[i], latLng);
     google.maps.event.addListener(marker, 'click', fn);
     google.maps.event.addDomListener(title, 'click', fn);
     speedTest.markers.push(marker);
